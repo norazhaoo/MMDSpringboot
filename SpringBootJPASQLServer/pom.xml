@@ -9,10 +9,10 @@
 		<version>2.1.6.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.mmd</groupId>
-	<artifactId>MMDSpringboot</artifactId>
+	<groupId>com.jason</groupId>
+	<artifactId>SpringBootJPASQLServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>MMDSpringboot</name>
+	<name>SpringBootJPASQLServer</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

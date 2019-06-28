@@ -8,6 +8,6 @@ import com.mmd.MMDSpringboot.model.User;
 
 public interface UserDao extends JpaRepository<User, Integer> {
 	
-	Optional<User> getUserById(int id);
+	Optional<User> getUserById(int id);	
 
 }
