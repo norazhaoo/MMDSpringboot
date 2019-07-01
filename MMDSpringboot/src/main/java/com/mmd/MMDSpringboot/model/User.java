@@ -9,14 +9,18 @@ public class User {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private int user_id;
 	private String username;
 	private String password;
-	public int getId() {
-		return id;
+	private String secret_question;
+	private String secret_answer;
+	private String role;
+	private String member_since;
+	public int getUser_id() {
+		return user_id;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 	public String getUsername() {
 		return username;
@@ -30,9 +34,36 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getSecret_question() {
+		return secret_question;
+	}
+	public void setSecret_question(String secret_question) {
+		this.secret_question = secret_question;
+	}
+	public String getSecret_answer() {
+		return secret_answer;
+	}
+	public void setSecret_answer(String secret_answer) {
+		this.secret_answer = secret_answer;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getMember_since() {
+		return member_since;
+	}
+	public void setMember_since(String member_since) {
+		this.member_since = member_since;
+	}
+	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
+		return "User [user_id=" + user_id + ", username=" + username + ", password=" + password + ", secret_question="
+				+ secret_question + ", secret_answer=" + secret_answer + ", role=" + role + ", member_since="
+				+ member_since + "]";
 	}
 	
 	
