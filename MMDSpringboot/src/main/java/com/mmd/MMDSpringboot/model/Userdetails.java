@@ -1,23 +1,23 @@
-package com.user.userinfo.model;
+package com.mmd.MMDSpringboot.model;
 
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import com.user.userinfo.HashPW;
 
 @Entity
 public class Userdetails {
 	@Id
+	@GeneratedValue
 	private int id;
+	
+	@Column(unique=true)
 	private String uname;
 	private String pass;
 	private byte[] salt;
-	
-	
 	
 	public int getId() {
 		return id;
@@ -48,13 +48,6 @@ public class Userdetails {
 	public String toString() {
 		return "UserDetails [id=" + id + ", uname=" + uname + ", pass=" + pass + ", salt=" + salt + "]";
 	}
-	
-	
-	
-    
-	
-	
-	
 
 	
 }

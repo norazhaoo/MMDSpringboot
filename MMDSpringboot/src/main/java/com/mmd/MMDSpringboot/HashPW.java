@@ -1,10 +1,10 @@
-package com.user.userinfo;
+package com.mmd.MMDSpringboot;
 
-import java.security.*;
+import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 
-import javax.crypto.*;
+import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 public class HashPW {
