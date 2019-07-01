@@ -14,7 +14,6 @@ public class Userdetails {
 	@GeneratedValue
 	private int id;
 	
-	@Column(unique=true)
 	private String uname;
 	private String pass;
 	private byte[] salt;
