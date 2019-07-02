@@ -1,9 +1,7 @@
 package com.mmd.MMDSpringboot.model;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,7 +15,6 @@ public class Userdetails {
 	private String uname;
 	private String pass;
 	private byte[] salt;
-	
 	public int getId() {
 		return id;
 	}
@@ -33,7 +30,7 @@ public class Userdetails {
 	public String getPass() {
 		return pass;
 	}
-	public void setPass(String pass) throws NoSuchAlgorithmException, InvalidKeySpecException {				
+	public void setPass(String pass) {
 		this.pass = pass;
 	}
 	public byte[] getSalt() {
@@ -42,11 +39,10 @@ public class Userdetails {
 	public void setSalt(byte[] salt) {
 		this.salt = salt;
 	}
-	
 	@Override
 	public String toString() {
-		return "UserDetails [id=" + id + ", uname=" + uname + ", pass=" + pass + ", salt=" + salt + "]";
+		return "Userdetails [id=" + id + ", uname=" + uname + ", pass=" + pass + ", salt=" + Arrays.toString(salt)
+				+ "]";
 	}
-
 	
 }
