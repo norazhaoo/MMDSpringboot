@@ -31,14 +31,14 @@ public class ProjectController {
     public Optional<Resource> getResource(@PathVariable("id") int id) {
 
         return resourceDao.findById(id);
-
     }
-    
+
     @PostMapping("/resource")
-    public Resource addResource(Resource resource) {
+    public Resource addResource(@RequestBody Resource resource) {
         return resourceDao.save(resource);
     }
-    
+   
+
     @PutMapping(path = "/resource", consumes = {"application/json"})
     public Resource saveOrUpdateResource(@RequestBody Resource resource) {
         resourceDao.save(resource);
