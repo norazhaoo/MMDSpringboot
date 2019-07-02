@@ -1,16 +1,33 @@
 package com.mmd.MMDSpringboot.model;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.SecondaryTable;
+import javax.persistence.Table;
+
 
 @Entity
-public class Resource {
+@Table(name = "Resource")
+@SecondaryTable(name = "ResourceDraft")
+public class Resource implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(updatable = false, nullable=false)
 	@GeneratedValue
 	private int id;
+
+	@Column(table = "ResourceDraft")
 	private String resource_code;
+	
+	@Column(table = "ResourceDraft")
 	private String resource_name;
 	
 	public int getId() {
