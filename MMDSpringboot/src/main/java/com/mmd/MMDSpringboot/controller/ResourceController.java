@@ -33,7 +33,7 @@ public class ResourceController {
 
 	}
 	
-	@PostMapping("/Resource")
+	@PostMapping("/Resourcepost")
 	public Resource addResource(Resource resource) {
 		return resourceDao.save(resource);
 	}
