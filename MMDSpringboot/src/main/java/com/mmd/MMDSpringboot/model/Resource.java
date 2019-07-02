@@ -8,7 +8,6 @@ import javax.persistence.Id;
 public class Resource {
 
 	@Id
-	@GeneratedValue
 	private int id;
 	private String resource_code;
 	private String resource_name;

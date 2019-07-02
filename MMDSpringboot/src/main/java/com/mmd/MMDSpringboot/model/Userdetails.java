@@ -9,7 +9,6 @@ import javax.persistence.Id;
 @Entity
 public class Userdetails {
 	@Id
-	@GeneratedValue
 	private int id;
 	
 	private String uname;
