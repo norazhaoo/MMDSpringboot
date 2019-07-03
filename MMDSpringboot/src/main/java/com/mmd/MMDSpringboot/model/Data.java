@@ -8,56 +8,57 @@ import javax.persistence.Id;
 public class Data {
 
 	@Id
-	private int data_id;
-	private int project_id;
-	private String project_name;
-	private String column_name;
-	private String column_value;
-	private String column_type;
+	@GeneratedValue
+	private int dataid;
+	private int projectid;
+	private String projectname;
+	private String columnname;
+	private String columnvalue;
+	private String columntype;
 	
-	public int getData_id() {
-		return data_id;
+	public int getDataid() {
+		return dataid;
 	}
-	public void setData_id(int data_id) {
-		this.data_id = data_id;
+	public void setDataid(int dataid) {
+		this.dataid = dataid;
 	}
-	public int getProject_id() {
-		return project_id;
+	public int getProjectid() {
+		return projectid;
 	}
-	public void setProject_id(int project_id) {
-		this.project_id = project_id;
+	public void setProjectid(int projectid) {
+		this.projectid = projectid;
 	}
-	public String getProject_name() {
-		return project_name;
+	public String getProjectname() {
+		return projectname;
 	}
-	public void setProject_name(String project_name) {
-		this.project_name = project_name;
+	public void setProjectname(String projectname) {
+		this.projectname = projectname;
 	}
-	public String getColumn_name() {
-		return column_name;
+	public String getColumnname() {
+		return columnname;
 	}
-	public void setColumn_name(String column_name) {
-		this.column_name = column_name;
+	public void setColumnname(String columnname) {
+		this.columnname = columnname;
 	}
-	public String getColumn_value() {
-		return column_value;
+	public String getColumnvalue() {
+		return columnvalue;
 	}
-	public void setColumn_value(String column_value) {
-		this.column_value = column_value;
+	public void setColumnvalue(String columnvalue) {
+		this.columnvalue = columnvalue;
 	}
-	public String getColumn_type() {
-		return column_type;
+	public String getColumntype() {
+		return columntype;
 	}
-	public void setColumn_type(String column_type) {
-		this.column_type = column_type;
+	public void setColumntype(String columntype) {
+		this.columntype = columntype;
 	}
+	
 	@Override
 	public String toString() {
-		return "Data [data_id=" + data_id + ", project_id=" + project_id + ", project_name=" + project_name
-				+ ", column_name=" + column_name + ", column_value=" + column_value + ", column_type=" + column_type
-				+ "]";
+		return "Data [dataid=" + dataid + ", projectid=" + projectid + ", projectname=" + projectname + ", columnname="
+				+ columnname + ", columnvalue=" + columnvalue + ", columntype=" + columntype + "]";
 	}
 	
-
+	
 	
 }
