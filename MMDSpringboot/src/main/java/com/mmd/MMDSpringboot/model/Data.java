@@ -8,6 +8,7 @@ import javax.persistence.Id;
 public class Data {
 
 	@Id
+	@GeneratedValue
 	private int data_id;
 	private int project_id;
 	private String project_name;
