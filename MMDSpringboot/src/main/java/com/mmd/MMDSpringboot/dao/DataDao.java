@@ -8,6 +8,8 @@ import com.mmd.MMDSpringboot.model.Data;
 
 public interface DataDao extends JpaRepository<Data, Integer>{
 
+	List<Data> findAllByDataid(int id);
+	
 	List<Data> findAllByProjectid(int id);
 
 }
