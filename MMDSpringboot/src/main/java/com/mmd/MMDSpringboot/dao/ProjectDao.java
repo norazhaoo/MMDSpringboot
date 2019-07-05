@@ -1,10 +1,10 @@
 package com.mmd.MMDSpringboot.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-import com.mmd.MMDSpringboot.model.Data;
+import com.mmd.MMDSpringboot.model.Resource;
 
-public interface ProjectDao extends JpaRepository<Data, Integer>{
+public interface ProjectDao extends CrudRepository<Resource, Integer>{
 
 	
 	
