@@ -11,10 +11,13 @@ public class Data {
 	@GeneratedValue
 	private int dataid;
 	private int projectid;
+	private int rowid;
 	private String projectname;
 	private String columnname;
 	private String columnvalue;
 	private String columntype;
+	
+	private Project project;
 	
 	public int getDataid() {
 		return dataid;
@@ -27,6 +30,12 @@ public class Data {
 	}
 	public void setProjectid(int projectid) {
 		this.projectid = projectid;
+	}
+	public int getRowid() {
+		return rowid;
+	}
+	public void setRowid(int rowid) {
+		this.rowid = rowid;
 	}
 	public String getProjectname() {
 		return projectname;
@@ -55,10 +64,10 @@ public class Data {
 	
 	@Override
 	public String toString() {
-		return "Data [dataid=" + dataid + ", projectid=" + projectid + ", projectname=" + projectname + ", columnname="
-				+ columnname + ", columnvalue=" + columnvalue + ", columntype=" + columntype + "]";
+		return "Data [dataid=" + dataid + ", projectid=" + projectid + ", rowid=" + rowid + ", projectname="
+				+ projectname + ", columnname=" + columnname + ", columnvalue=" + columnvalue + ", columntype="
+				+ columntype + "]";
 	}
-	
 	
 	
 }
