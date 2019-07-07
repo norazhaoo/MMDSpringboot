@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.mmd.MMDSpringboot.model.Data;
+import com.mmd.MMDSpringboot.model.DataId;
 
-public interface DataDao extends JpaRepository<Data, Integer>{
+public interface DataDao extends JpaRepository<Data, DataId>{
 
-	List<Data> findAllByDataid(int id);
-	
-	List<Data> findAllByProjectid(int id);
+
+//	List<Data> findByDataIdProjectid(int projectid);
 
 }

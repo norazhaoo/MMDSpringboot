@@ -27,21 +27,16 @@ public class DataController {
     public List<Data> getAllData() {
     	return dataDao.findAll();
     }
-	
-    @RequestMapping("/data/{dataid}")
-    public List<Data> getDataById(@PathVariable("dataid") int dataid) {
-    	return dataDao.findAllByDataid(dataid);
-    }
     
-    @RequestMapping("/project/{projectid}")
-    public List<Data> findAllByProjectid(@PathVariable("projectid") int projectid) {
-    	List<Data> specificProject = dataDao.findAllByProjectid(projectid);
-//    	ArrayList<String> arrayOfColumns = new ArrayList<String>();
-//    	for(Data tempData: specificProject) {
-//    		arrayOfColumns.add(tempData.getColumnname());
-//    	}
-    	return specificProject;
-    }
+//    @RequestMapping("/data/{projectid}")
+//    public List<Data> findAllByProjectid(@PathVariable("projectid") int projectid) {
+//    	List<Data> specificProject = dataDao.findByDataIdProjectid(projectid);
+////    	ArrayList<String> arrayOfColumns = new ArrayList<String>();
+////    	for(Data tempData: specificProject) {
+////    		arrayOfColumns.add(tempData.getColumnname());
+////    	}
+//    	return specificProject;
+//    }
 	
 	@PostMapping("/addData")
 	public Data addData(@RequestBody Data data) {

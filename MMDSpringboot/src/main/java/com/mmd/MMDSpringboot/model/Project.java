@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Project {
@@ -14,6 +15,7 @@ public class Project {
 	int id;
 	String projectname;
 	
+	@OneToMany(mappedBy="project")
 	List<Data> projectdata;
 
 	public int getId() {return id;}
