@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mmd.MMDSpringboot.HashPW;
 import com.mmd.MMDSpringboot.dao.UserInfoRepo;
+import com.mmd.MMDSpringboot.ecpection.ErrorException;
 import com.mmd.MMDSpringboot.model.Userdetails;
 
 @RestController

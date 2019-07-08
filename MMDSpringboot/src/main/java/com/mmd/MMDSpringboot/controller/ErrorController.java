@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.mmd.MMDSpringboot.ErrorHandling;
+import com.mmd.MMDSpringboot.ecpection.ErrorException;
 
 
 @ControllerAdvice
