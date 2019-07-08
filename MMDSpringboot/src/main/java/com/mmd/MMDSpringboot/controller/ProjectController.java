@@ -27,6 +27,7 @@ public class ProjectController{
 @RestController
 public class ProjectController {
 	@Autowired
+<<<<<<< HEAD
 	private ProjectService projectService;
 
 	@PostMapping
@@ -43,6 +44,33 @@ public class ProjectController {
 	public Resource saveOrUpdateResource(@RequestBody Resource resource){
 	    return projectService.saveOrUpdateResource(resource);
 	}
+=======
+    ResourceDao resourceDao;
+
+    @GetMapping("/resource")
+    public List<Resource> getResources() {
+        return resourceDao.findAll();
+    }
+
+    @RequestMapping("/resource/{id}")
+    public Optional<Resource> getResource(@PathVariable("id") int id) {
+
+        return resourceDao.findById(id);
+    }
+
+    @PostMapping("/resource")
+    public Resource addResource(@RequestBody Resource resource) {
+        return resourceDao.save(resource);
+    }
+   
+
+    @PutMapping(path = "/resource", consumes = {"application/json"})
+    public Resource saveOrUpdateResource(@RequestBody Resource resource) {
+        resourceDao.save(resource);
+        return resource;
+    }
+	
+>>>>>>> develop
 
 
 	@GetMapping("/resource")

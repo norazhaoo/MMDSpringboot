@@ -14,7 +14,11 @@ import javax.persistence.Table;
 @Table(name = "Resource")
 public class Resource  {
 
+<<<<<<< HEAD
 	
+=======
+	@Id
+>>>>>>> develop
 	private int id;
 
 	//@Column(table = "ResourceDraft")
