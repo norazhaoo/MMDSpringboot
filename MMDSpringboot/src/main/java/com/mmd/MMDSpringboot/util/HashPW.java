@@ -1,4 +1,4 @@
-package com.mmd.MMDSpringboot;
+package com.mmd.MMDSpringboot.util;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;

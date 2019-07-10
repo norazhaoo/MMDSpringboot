@@ -1,4 +1,4 @@
-package com.mmd.MMDSpringboot.controller;
+package com.mmd.MMDSpringboot.userinfo;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -7,14 +7,14 @@ import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mmd.MMDSpringboot.HashPW;
-import com.mmd.MMDSpringboot.dao.UserInfoRepo;
-import com.mmd.MMDSpringboot.model.Userdetails;
+import com.mmd.MMDSpringboot.util.ErrorException;
+import com.mmd.MMDSpringboot.util.HashPW;
 
 @RestController
 public class UserInfoController {
@@ -27,7 +27,7 @@ public class UserInfoController {
 	}
 	
 	@PostMapping("/userReg")
-	public Userdetails userReg(Userdetails user) throws NoSuchAlgorithmException, InvalidKeySpecException {
+	public Userdetails userReg(@RequestBody Userdetails user) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		
 		if((userRepo.findByUname(user.getUname()).size()) > 0) {
 			throw new ErrorException("This user name has been used, please try another one.");
@@ -54,14 +54,14 @@ public class UserInfoController {
 	}
 	
 	
-	@RequestMapping("/getUser")
-	public List<Userdetails> getUser(@RequestParam String uname) {
+	@RequestMapping("/getUser/{uname}")
+	public List<Userdetails> getUser(@PathVariable("uname") String uname) {
 		List<Userdetails> user = userRepo.findByUname(uname);
 		return user;
 	}
 	
 	@PostMapping("/userLogin")
-	public Userdetails userLogin(Userdetails user) throws NoSuchAlgorithmException, InvalidKeySpecException{
+	public Userdetails userLogin(@RequestBody Userdetails user) throws NoSuchAlgorithmException, InvalidKeySpecException{
 		Userdetails userTest = userRepo.findByUname(user.getUname()).get(0);
 		
 		byte[] saltTest = userTest.getSalt();
