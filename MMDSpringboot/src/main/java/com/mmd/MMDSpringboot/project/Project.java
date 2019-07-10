@@ -24,5 +24,4 @@ public class Project {
 		return "Project [projectid=" + projectid + ", projectname=" + projectname + "]";
 	}
 	
-	
 }

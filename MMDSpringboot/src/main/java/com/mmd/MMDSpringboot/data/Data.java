@@ -19,18 +19,14 @@ public class Data {
 	@GeneratedValue
 	private Long dataid;
 
-
 	//represents projectid
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "projectid", nullable = false)
-	@JsonIgnore
 	private Project project;
-
 
 	//represents columnid
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "columnid", nullable = false)
-	@JsonIgnore
 	private ColumnModel columnModel;
 
 	private int rowid;
