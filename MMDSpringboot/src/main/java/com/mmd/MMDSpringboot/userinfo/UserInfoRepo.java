@@ -1,10 +1,8 @@
-package com.mmd.MMDSpringboot.dao;
+package com.mmd.MMDSpringboot.userinfo;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.mmd.MMDSpringboot.model.Userdetails;
 
 public interface UserInfoRepo extends JpaRepository<Userdetails, Integer>{
 

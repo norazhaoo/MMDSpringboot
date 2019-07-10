@@ -1,4 +1,4 @@
-package com.mmd.MMDSpringboot;
+package com.mmd.MMDSpringboot.util;
 
 public class ErrorHandling {
 	private String message;
