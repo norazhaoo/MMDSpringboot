@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 public interface ProjectRepository extends JpaRepository<Project, Long>{
 	
 	Project findByProjectname(String projectname);
-	
-	Project findAllByProjectid(Long projectid);
+
 }
