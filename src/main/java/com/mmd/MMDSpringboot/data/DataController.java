@@ -1,6 +1,7 @@
 package com.mmd.MMDSpringboot.data;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -40,9 +41,8 @@ public class DataController {
 	}
 	
 	@GetMapping("/projectCSV/{projectId}")
-	public String getProjectAsCSV(@PathVariable Long projectId) {
-		String projectCSV = dataService.getProjectAsCSV(projectId);
-		return projectCSV;
+	public Map<Integer, Map<String,String>> getProjectAsCSV(@PathVariable Long projectId) {
+		return dataService.getProjectAsCSV(projectId);
 	}
 	
 	@PostMapping("/addData/projectId/{projId}/columnId/{colId}")

@@ -67,31 +67,15 @@ public class DataService {
 		return dataRepository.getOne(dataId).getDataid();
 	}
 
-	public String getProjectAsCSV(Long projectId) {
-		String columnNames = "";
+	public Map<Integer, Map<String,String>> getProjectAsCSV(Long projectId) {
 		Set<String> columnNameSet = new HashSet<String>();
-		Set<Integer> rowCountSet = new HashSet<Integer>(); //find the number of rows
-		//  rowId     columnName, value
+		
+		//  <rowId    <colName>,<colValue>
 		Map<Integer, Map<String,String>> tempCSV = new HashMap<>(); //tempCSV
 		List<Data> projectData = getDataByProjectId(projectId); //dataList we're parsing
 		for(Data tempData: projectData) {
 			columnNameSet.add(tempData.getColumn().getColumnname());
-			rowCountSet.add(tempData.getRowid());
 		}
-
-//		//retrieve the unique column names
-//		String [] columnNameArray = new String[columnNameSet.size()];
-//		int columnNameArrayCounter = 0;
-//		//mapping columnNames to an index
-		for(String tempString : columnNameSet) {
-//			columnNameArray[columnNameArrayCounter] = tempString;
-			columnNames += tempString+",";
-		}
-//		//preparing columnNames for CSV return
-//		for(String tempString : columnNameArray) {
-//			columnNames += tempString+",";
-//		}
-		columnNames = columnNames.substring(0, columnNames.length()-1)+",rowId"+"\n";
 
 		for(Data tempData : projectData) {
 			Map<String, String> columnMap = new HashMap<>();
@@ -104,20 +88,13 @@ public class DataService {
 				for(String tempString : columnNameSet) {
 					columnMap.put(tempString, "");
 				}
+				//replace default value with real value
 				columnMap.replace(tempData.getColumn().getColumnname(), tempData.getColumnvalue());
 			}
 			tempCSV.put(tempData.getRowid(), columnMap);
 		
 		}
-		String csvValues = "";
-		for (Entry<Integer, Map<String, String>> entry : tempCSV.entrySet()) {
-			Map<String,String> tempMap = entry.getValue();
-			for(Entry<String, String> columnEntry : tempMap.entrySet()) {
-				csvValues+= columnEntry.getValue()+",";
-			}
-			csvValues = csvValues.substring(0, csvValues.length()-1)+","+entry.getKey()+"\n";
-		}
-		return columnNames + csvValues;
+		return tempCSV;
 		
 	}
 
