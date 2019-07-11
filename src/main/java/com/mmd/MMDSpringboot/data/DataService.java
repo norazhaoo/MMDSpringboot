@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -68,25 +69,55 @@ public class DataService {
 
 	public String getProjectAsCSV(Long projectId) {
 		String columnNames = "";
-		Set<Integer> rowCountSet = new HashSet<Integer>();
-		Map<Integer,ArrayList<String>> multiMap = new HashMap<>();
-		List<Data> projectData = getDataByProjectId(projectId);
+		Set<String> columnNameSet = new HashSet<String>();
+		Set<Integer> rowCountSet = new HashSet<Integer>(); //find the number of rows
+		//  rowId     columnName, value
+		Map<Integer, Map<String,String>> tempCSV = new HashMap<>(); //tempCSV
+		List<Data> projectData = getDataByProjectId(projectId); //dataList we're parsing
 		for(Data tempData: projectData) {
-			String columnName = tempData.getColumn().getColumnname();
-			columnNames = columnNames + columnName+",";
+			columnNameSet.add(tempData.getColumn().getColumnname());
 			rowCountSet.add(tempData.getRowid());
-//			multiMap.put(tempData.getRowid(), tempData.getColumnvalue());
 		}
-		columnNames.substring(0, columnNames.length()-1);
-		columnNames += "\n";
+
+//		//retrieve the unique column names
+//		String [] columnNameArray = new String[columnNameSet.size()];
+//		int columnNameArrayCounter = 0;
+//		//mapping columnNames to an index
+		for(String tempString : columnNameSet) {
+//			columnNameArray[columnNameArrayCounter] = tempString;
+			columnNames += tempString+",";
+		}
+//		//preparing columnNames for CSV return
+//		for(String tempString : columnNameArray) {
+//			columnNames += tempString+",";
+//		}
+		columnNames = columnNames.substring(0, columnNames.length()-1)+",rowId"+"\n";
+
+		for(Data tempData : projectData) {
+			Map<String, String> columnMap = new HashMap<>();
+			if(tempCSV.containsKey(tempData.getRowid())) {
+				//retrieve value and replace appropriate string array
+				columnMap = tempCSV.get(tempData.getRowid());
+				columnMap.replace(tempData.getColumn().getColumnname(), tempData.getColumnvalue());
+			}else {
+				//add new string array with default values
+				for(String tempString : columnNameSet) {
+					columnMap.put(tempString, "");
+				}
+				columnMap.replace(tempData.getColumn().getColumnname(), tempData.getColumnvalue());
+			}
+			tempCSV.put(tempData.getRowid(), columnMap);
 		
-		int rowCount = rowCountSet.size();
-
-		String [] stringArray = new String[rowCount];
-		for(Data tempData: projectData) {
-
 		}
-		return "testing";
+		String csvValues = "";
+		for (Entry<Integer, Map<String, String>> entry : tempCSV.entrySet()) {
+			Map<String,String> tempMap = entry.getValue();
+			for(Entry<String, String> columnEntry : tempMap.entrySet()) {
+				csvValues+= columnEntry.getValue()+",";
+			}
+			csvValues = csvValues.substring(0, csvValues.length()-1)+","+entry.getKey()+"\n";
+		}
+		return columnNames + csvValues;
 		
 	}
 
