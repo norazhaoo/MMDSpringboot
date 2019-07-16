@@ -1,11 +1,9 @@
 package com.mmd.MMDSpringboot.data;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -77,6 +75,7 @@ public class DataService {
 			columnNameSet.add(tempData.getColumn().getColumnname());
 		}
 
+		//populate the HashSet collection
 		for(Data tempData : projectData) {
 			Map<String, String> columnMap = new HashMap<>();
 			if(tempCSV.containsKey(tempData.getRowid())) {
@@ -92,10 +91,8 @@ public class DataService {
 				columnMap.replace(tempData.getColumn().getColumnname(), tempData.getColumnvalue());
 			}
 			tempCSV.put(tempData.getRowid(), columnMap);
-		
 		}
 		return tempCSV;
-		
 	}
 
 }
