@@ -1,12 +1,15 @@
 package com.mmd.MMDSpringboot.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.springframework.stereotype.Service;
+
 import com.mmd.MMDSpringboot.column.ColumnModel;
 import com.mmd.MMDSpringboot.column.ColumnService;
 import com.mmd.MMDSpringboot.project.Project;
@@ -65,7 +68,7 @@ public class DataService {
 		return dataRepository.getOne(dataId).getDataid();
 	}
 
-	public Map<Integer, Map<String,String>> getProjectAsCSV(Long projectId) {
+	public List<Map<String,String>> getProjectAsCSV(Long projectId) {
 		Set<String> columnNameSet = new HashSet<String>();
 		
 		//  <rowId    <colName>,<colValue>
@@ -87,12 +90,20 @@ public class DataService {
 				for(String tempString : columnNameSet) {
 					columnMap.put(tempString, "");
 				}
+				columnMap.put("rowid", tempData.getRowid()+"");
 				//replace default value with real value
 				columnMap.replace(tempData.getColumn().getColumnname(), tempData.getColumnvalue());
 			}
 			tempCSV.put(tempData.getRowid(), columnMap);
 		}
-		return tempCSV;
+		
+		List<Map<String,String>> listOfRows = new ArrayList<Map<String,String>>();
+        for (Entry<Integer, Map<String, String>> entry : tempCSV.entrySet()) {
+        	listOfRows.add(entry.getValue());
+        }
+
+		return listOfRows;
 	}
+	
 
 }
