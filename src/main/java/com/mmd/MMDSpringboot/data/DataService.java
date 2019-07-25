@@ -8,7 +8,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.mmd.MMDSpringboot.column.ColumnModel;
 import com.mmd.MMDSpringboot.column.ColumnService;
@@ -48,11 +50,25 @@ public class DataService {
 		return dataRepository.findByRowid(rowId);
 	}
 
-	public Long addData(Long projId, Long colId, Data data) {
+	public Data addData(Long projId, Long colId, Data data) {
 		data.setDataid(null);
-		data.setProject(projectService.getProjectById(projId));
+		Project project = projectService.getProjectById(projId);
+//		try {
+//			project.getProjectname();
+//		}catch(Exception ex) {
+//			throw new DataServiceException("Project with id: "+projId+ " doesn't exist");
+//		}
+		
+	    try {
+	    	project.getProjectname();
+	    } catch (Exception ex) {
+	        throw new ResponseStatusException(
+	          HttpStatus.NOT_FOUND, "Project Not Found", ex);
+	    }
+		
+		data.setProject(project);
 		data.setColumnModel(columnService.getColumnModelById(colId));
-		return dataRepository.save(data).getDataid();
+		return dataRepository.save(data);
 	}
 	
 	public Long updateData(Long dataId, Data data) {

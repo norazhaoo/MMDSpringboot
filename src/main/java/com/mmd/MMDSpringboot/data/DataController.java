@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,11 +43,6 @@ public class DataController {
 		return projectData;
 	}
 	
-//	@GetMapping("/projectCSV/{projectId}")
-//	public Map<Integer, Map<String,String>> getProjectAsCSV(@PathVariable Long projectId) {
-//		return dataService.getProjectAsCSV(projectId);
-//	}
-	
 	
 //	@RequestMapping(value = "/projectCSV/{projectId}", method = RequestMethod.GET, produces = "application/json")
 	@GetMapping("/projectCSV/{projectId}")
@@ -55,10 +51,9 @@ public class DataController {
 	}
 	
 	@PostMapping("/addData/projectId/{projId}/columnId/{colId}")
-	public Long addData(@PathVariable Long projId, @PathVariable Long colId, @RequestBody Data data, HttpServletResponse httpResponse) {
-		Long id = dataService.addData(projId, colId, data);
-		httpResponse.setStatus(HttpServletResponse.SC_CREATED);
-		return id;
+	public Data addData(@PathVariable Long projId, @PathVariable Long colId, @RequestBody Data data, HttpServletResponse httpResponse) {
+	        return dataService.addData(projId, colId, data);
+
 	}
 	
 	@PutMapping("/updateData/{dataId}")

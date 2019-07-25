@@ -10,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mmd.MMDSpringboot.model.UserDTO;
-import com.mmd.MMDSpringboot.util.ErrorException;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
