@@ -10,8 +10,11 @@ public interface DataRepository extends JpaRepository<Data, Long>{
 	
 	public List<Data> findByProject_Projectid(Long projectId);
 	
-	public Data findByColumnModel_Columnid(Long columnId);
+	public List<Data> findByColumnModel_Columnid(Long columnId);
 	
 	public List<Data> findByRowid(int rowId);
+	
+	public Data findByProject_ProjectidAndColumnModel_ColumnidAndRowid(
+			Long projId, Long columnId, String rowId);
 	
 }

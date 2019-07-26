@@ -1,6 +1,7 @@
 package com.mmd.MMDSpringboot.jwt;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.mmd.MMDSpringboot.config.JwtTokenUtil;
 import com.mmd.MMDSpringboot.model.JwtRequest;
@@ -53,10 +55,14 @@ public class JwtAuthenticationController {
 	private void authenticate(String username, String password) throws Exception {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-		} catch (DisabledException e) {
-			throw new Exception("USER_DISABLED", e);
-		} catch (BadCredentialsException e) {
-			throw new Exception("INVALID_CREDENTIALS", e);
-		}
+		} 
+		catch (DisabledException e) {
+	        throw new ResponseStatusException(
+	  	          HttpStatus.UNAUTHORIZED, "USER DISABLED", e);
+	  	    }
+		catch (BadCredentialsException ex) {
+	        throw new ResponseStatusException(
+	          HttpStatus.NOT_FOUND, "INVALID_CREDENTIALS", ex);
+	    }
 	}
 }

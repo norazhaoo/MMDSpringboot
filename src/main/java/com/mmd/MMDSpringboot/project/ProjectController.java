@@ -45,7 +45,6 @@ public class ProjectController {
 	@PutMapping("/updateProject/{projectId}")
 	public Long updateProject(@PathVariable Long projectId, @Valid @RequestBody Project project) {
 		return projectService.updateProject(projectId, project);
-	}	
-
+	}
 
 }

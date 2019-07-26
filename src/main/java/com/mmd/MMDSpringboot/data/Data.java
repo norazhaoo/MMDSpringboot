@@ -29,7 +29,7 @@ public class Data {
 	@JoinColumn(name = "columnid", nullable = false)
 	private ColumnModel columnModel;
 
-	private int rowid;
+	private String rowid;
 	private String columnvalue;
 	
 	public Long getDataid() {return dataid;}
@@ -41,8 +41,8 @@ public class Data {
 	public ColumnModel getColumn() {return columnModel;}
 	public void setColumnModel(ColumnModel columnModel) {this.columnModel = columnModel;}
 	
-	public int getRowid() {return rowid;}
-	public void setRowid(int rowid) {this.rowid = rowid;}
+	public String getRowid() {return rowid;}
+	public void setRowid(String rowid) {this.rowid = rowid;}
 	
 	public String getColumnvalue() {return columnvalue;}
 	public void setColumnvalue(String columnvalue) {this.columnvalue = columnvalue;}

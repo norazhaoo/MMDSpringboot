@@ -50,45 +50,40 @@ public class DataService {
 		return dataRepository.findByRowid(rowId);
 	}
 
-	public Data addData(Long projId, Long colId, Data data) {
-		data.setDataid(null);
-		Project project = projectService.getProjectById(projId);
-//		try {
-//			project.getProjectname();
-//		}catch(Exception ex) {
-//			throw new DataServiceException("Project with id: "+projId+ " doesn't exist");
-//		}
-		
-	    try {
-	    	project.getProjectname();
-	    } catch (Exception ex) {
-	        throw new ResponseStatusException(
-	          HttpStatus.NOT_FOUND, "Project with id: "+ projId+" Not Found", ex);
-	    }
-		
-		data.setProject(project);
-		data.setColumnModel(columnService.getColumnModelById(colId));
+	public Data addData(DataDTO dataDTO) {
+	    Data data = new Data();
+	    data.setDataid(null);
+		data.setProject(projectService.getProjectByProjectname(dataDTO.getProjectname()));
+		data.setColumnModel(columnService.getColumnModelByColumnname(dataDTO.getColumnname()));
+	    data.setColumnvalue(dataDTO.getColumnvalue());
+	    data.setRowid(dataDTO.getRowid());
 		return dataRepository.save(data);
 	}
 	
-	public Long updateData(Long dataId, Data data) {
-		Data tempData = dataRepository.getOne(dataId);
-		ColumnModel tempColumn = columnService.getColumnModelById(tempData.getColumn().getColumnid());
-		Project tempProject = projectService.getProjectById(tempData.getProject().getProjectid());
-		tempData.setColumnModel(tempColumn);
-		tempData.setProject(tempProject);
-		tempData.setColumnvalue(data.getColumnvalue());
-		tempData.setRowid(data.getRowid());
-		tempData.setDataid(dataId);
-		dataRepository.save(tempData);
-		return dataRepository.getOne(dataId).getDataid();
+	public Data updateData(DataDTO dataDTO) {
+		//From front end Data object, use project_name to find project
+		Project tempProject = projectService.getProjectByProjectname(dataDTO.getProjectname());
+		//From front end Data object, use column_name to find columnModel
+		ColumnModel tempColumn = columnService.getColumnModelByColumnname(dataDTO.getColumnname());
+		
+		//using project_id, column_id, row_id, find unique Data_id to perform PUT
+		Data tempData = dataRepository.
+				findByProject_ProjectidAndColumnModel_ColumnidAndRowid(
+						tempProject.getProjectid(), 
+						tempColumn.getColumnid(), 
+						dataDTO.getRowid());
+		
+		//once we got the right Data model in our back-end, update the column's value
+		tempData.setColumnvalue(dataDTO.getColumnvalue());
+
+		return dataRepository.save(tempData);
 	}
 
 	public List<Map<String,String>> getProjectAsCSV(Long projectId) {
 		Set<String> columnNameSet = new HashSet<String>();
 		
 		//  <rowId    <colName>,<colValue>
-		Map<Integer, Map<String,String>> tempCSV = new HashMap<>(); //tempCSV
+		Map<String, Map<String,String>> tempCSV = new HashMap<>(); //tempCSV
 		List<Data> projectData = getDataByProjectId(projectId); //dataList we're parsing
 		for(Data tempData: projectData) {
 			columnNameSet.add(tempData.getColumn().getColumnname());
@@ -114,7 +109,7 @@ public class DataService {
 		}
 		
 		List<Map<String,String>> listOfRows = new ArrayList<Map<String,String>>();
-        for (Entry<Integer, Map<String, String>> entry : tempCSV.entrySet()) {
+        for (Entry<String, Map<String, String>> entry : tempCSV.entrySet()) {
         	listOfRows.add(entry.getValue());
         }
 

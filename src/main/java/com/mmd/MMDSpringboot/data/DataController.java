@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mmd.MMDSpringboot.column.ColumnModel;
 import com.mmd.MMDSpringboot.column.ColumnService;
 import com.mmd.MMDSpringboot.project.ProjectService;
 
@@ -50,15 +52,15 @@ public class DataController {
 		return dataService.getProjectAsCSV(projectId);
 	}
 	
-	@PostMapping("/addData/projectId/{projId}/columnId/{colId}")
-	public Data addData(@PathVariable Long projId, @PathVariable Long colId, @RequestBody Data data, HttpServletResponse httpResponse) {
-	        return dataService.addData(projId, colId, data);
+	@PostMapping("/addData")
+	public Data addData(@RequestBody DataDTO dataDTO, HttpServletResponse httpResponse) {
+	        return dataService.addData(dataDTO);
 
 	}
 	
-	@PutMapping("/updateData/{dataId}")
-	public Long updateData(@PathVariable Long dataId, @Valid @RequestBody Data data) {
-		return dataService.updateData(dataId, data);
+	@PutMapping("/updateData")
+	public Data updateData(@Valid @RequestBody DataDTO dataDTO) {
+		return dataService.updateData(dataDTO);
 	}
 
 }
