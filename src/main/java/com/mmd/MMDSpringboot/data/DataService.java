@@ -63,7 +63,7 @@ public class DataService {
 	    	project.getProjectname();
 	    } catch (Exception ex) {
 	        throw new ResponseStatusException(
-	          HttpStatus.NOT_FOUND, "Project Not Found", ex);
+	          HttpStatus.NOT_FOUND, "Project with id: "+ projId+" Not Found", ex);
 	    }
 		
 		data.setProject(project);

@@ -13,24 +13,15 @@ public class ColumnModel {
 	
 	private String columnname;
 	private String columntype;
-	public Long getColumnid() {
-		return columnid;
-	}
-	public void setColumnid(Long columnid) {
-		this.columnid = columnid;
-	}
-	public String getColumnname() {
-		return columnname;
-	}
-	public void setColumnname(String columnname) {
-		this.columnname = columnname;
-	}
-	public String getColumntype() {
-		return columntype;
-	}
-	public void setColumntype(String columntype) {
-		this.columntype = columntype;
-	}
+	
+	public Long getColumnid() {return columnid;}
+	public void setColumnid(Long columnid) {this.columnid = columnid;}
+	
+	public String getColumnname() {return columnname;}
+	public void setColumnname(String columnname) {this.columnname = columnname;}
+	
+	public String getColumntype() {return columntype;}
+	public void setColumntype(String columntype) {this.columntype = columntype;}
 	
 	@Override
 	public String toString() {
