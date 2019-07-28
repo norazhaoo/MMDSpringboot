@@ -73,6 +73,16 @@ public class DataService {
 						tempColumn.getColumnid(), 
 						dataDTO.getRowid());
 		
+		//front end is passing in valid project name, column name, rowid 
+		//but can't find the data model in database
+		//means cell is being updated from "" to a value
+		if(tempData==null) {
+			tempData = new Data();
+			tempData.setProject(tempProject);
+			tempData.setColumnModel(tempColumn);
+			tempData.setRowid(dataDTO.getRowid());
+		}
+		
 		//once we got the right Data model in our back-end, update the column's value
 		tempData.setColumnvalue(dataDTO.getColumnvalue());
 
