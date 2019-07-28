@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("column")
 public class ColumnController {
@@ -31,10 +34,8 @@ public class ColumnController {
 	}
 	
 	@PostMapping("/addColumn")
-	public Long addColumn(@RequestBody ColumnModel columnModel, HttpServletResponse httpResponse) {
-		Long id = columnService.addColumn(columnModel);
-		httpResponse.setStatus(HttpServletResponse.SC_CREATED);
-		return id;
+	public ColumnModel addColumn(@RequestBody ColumnDTO columnDTO, HttpServletResponse httpResponse) {
+		return columnService.addColumn(columnDTO);
 	}
 	
 	@PutMapping("/updateColumn/{columnId}")

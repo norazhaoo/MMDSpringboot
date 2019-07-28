@@ -29,9 +29,12 @@ public class ColumnService {
 		return columnRepository.findByColumnname(columnname);
 	}
 	
-	public Long addColumn(ColumnModel columnModel) {
+	public ColumnModel addColumn(ColumnDTO columnDTO) {
+		ColumnModel columnModel = new ColumnModel();
 		columnModel.setColumnid(null);
-		return columnRepository.save(columnModel).getColumnid();
+		columnModel.setColumnname(columnDTO.getColumnname());
+		columnModel.setColumntype(columnDTO.getColumntype());
+		return columnRepository.save(columnModel);
 	}
 	
 	public Long updateColumn(Long id, ColumnModel columnModel) {
