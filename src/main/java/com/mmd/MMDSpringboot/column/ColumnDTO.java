@@ -4,6 +4,7 @@ public class ColumnDTO {
 
 	private String columnname;
 	private String columntype;
+	private String projectname;
 	
 	public String getColumnname() {
 		return columnname;
@@ -17,6 +18,15 @@ public class ColumnDTO {
 	public void setColumntype(String columntype) {
 		this.columntype = columntype;
 	}
+	public String getProjectname() {
+		return projectname;
+	}
+	public void setProjectname(String projectname) {
+		this.projectname = projectname;
+	}
+	
+
+	
 	
 	
 	

@@ -4,14 +4,19 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.mmd.MMDSpringboot.project.Project;
+import com.mmd.MMDSpringboot.project.ProjectRepository;
+
 @Service
 public class ColumnService {
 	
 	private ColumnRepository columnRepository;
+	private ProjectRepository projectRepository;
 
-	public ColumnService(ColumnRepository columnRepository) {
+	public ColumnService(ColumnRepository columnRepository, ProjectRepository projectRepository) {
 		super();
 		this.columnRepository = columnRepository;
+		this.projectRepository = projectRepository;
 	}
 	
 	//get all columns
@@ -34,6 +39,8 @@ public class ColumnService {
 		columnModel.setColumnid(null);
 		columnModel.setColumnname(columnDTO.getColumnname());
 		columnModel.setColumntype(columnDTO.getColumntype());
+		Project project = projectRepository.findByProjectname(columnDTO.getProjectname());
+		columnModel.setProject(project);
 		return columnRepository.save(columnModel);
 	}
 	
